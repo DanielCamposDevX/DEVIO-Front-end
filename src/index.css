@@ -43,6 +43,10 @@ table {
 	border-spacing: 0;
 }
 
+input:focus {
+	border:none;
+	outline: none;
+}
 
 .burger-icon{
 	background-color: white;

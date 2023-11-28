@@ -30,7 +30,7 @@ const Main = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-`
+`;
 
 const Brand = styled.div`
     display: flex;
@@ -40,13 +40,13 @@ const Brand = styled.div`
     font-size: 20px;
     font-weight: 800;
     color: white;
-`
+`;
 
 const ButtonsContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-`
+`;
 
 const OptionsButton = styled.button`
     font-family: 'Montserrat', sans-serif;
@@ -60,4 +60,4 @@ const OptionsButton = styled.button`
     padding-left: 12px;
     padding-right: 12px;
     border-radius: 10px;
-`
+`;
