@@ -14,6 +14,7 @@ function App() {
       <Header />
       <Main>
         <h1>Seja bem vindo!</h1>
+        
         <SearchGroup>
           <input type="text" placeholder="O que você procura?" value={search} onChange={e => setSearch(e.target.value)} />
           <SearchButton>
@@ -21,6 +22,7 @@ function App() {
           </SearchButton>
         </SearchGroup>
 
+        
       </Main>
     </Page>
   )
@@ -48,7 +50,7 @@ const Main = styled.div`
   gap: 15px;
 
   h1{
-    font-size: 25px;
+    font-size: 29px;
     font-weight: 800;
     letter-spacing: 1px;
   }
@@ -56,17 +58,18 @@ const Main = styled.div`
 
 
 const SearchGroup = styled.div`
+  margin-top: 10px;
   display: flex;
   align-items: center;
   border: none;
   width: 30%;
   background-color: #f3f3f3;
   border-radius: 5px;
-  box-shadow: 1px 1px 1px -1px rgba(145,145,145,1);
-  transition: outline ease-in-out 0.4s; /* Adicionando uma transição suave para a borda */
+  border: 1px solid rgba(1, 197, 50, 0.2);
+  transition: outline ease-in-out 0.4s;
 
   &:hover {
-    outline: 1px solid darkgreen; /* Adicione a cor e o estilo da borda desejados */
+    outline: 1px solid darkgreen;
   }
   input{
     font-family: 'Montserrat', sans-serif;
