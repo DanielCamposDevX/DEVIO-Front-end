@@ -2,7 +2,7 @@ import { useState } from "react"
 import Header from "./components/page-header"
 import styled from "styled-components"
 import { FaSearch } from "react-icons/fa";
-
+import Categories from "./components/categories/categories";
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
           </SearchButton>
         </SearchGroup>
 
-        
+        <Categories />
       </Main>
     </Page>
   )
@@ -54,6 +54,17 @@ const Main = styled.div`
     font-weight: 800;
     letter-spacing: 1px;
   }
+  h2{
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  h3{
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
 `;
 
 
