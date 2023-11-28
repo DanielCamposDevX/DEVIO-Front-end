@@ -27,7 +27,6 @@ const Main = styled.header`
     box-sizing: border-box;
     padding-left: 40px;
     padding-right: 40px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
