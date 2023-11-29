@@ -64,7 +64,6 @@ const OrderPic = styled.img`
     height: 50px;
     border-radius: 10px;
     box-shadow: 2px 2px 6px 3px #1b8a1b34;
-
 `
 
 const OrderTitleHolder = styled.div`
