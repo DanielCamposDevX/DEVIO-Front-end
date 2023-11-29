@@ -2,9 +2,9 @@ import { useState } from "react"
 import Header from "../components/page-header"
 import styled from "styled-components"
 import { FaSearch } from "react-icons/fa";
-import Categories from "../components/categories/categories";
-import Products from "../components/produtos/products"
-import ConfirmItem from "../components/finish-item-order/finish-item-order";
+import Categories from "../components/home/categories/categories";
+import Products from "../components/home/produtos/products"
+import ConfirmItem from "../components/home/finish-item-order/finish-item-order";
 
 export default function HomePage() {
 
