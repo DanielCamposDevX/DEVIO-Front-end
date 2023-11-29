@@ -15,10 +15,10 @@ export default function Header() {
                 fastfood
             </Brand>
             <ButtonsContainer>
-                <OptionsButton onClick={() => { navigate("/"); }} active={location.pathname === "/"}>
+                <OptionsButton onClick={() => { navigate("/"); }} $active={location.pathname === "/"}>
                     Pedidos
                 </OptionsButton>
-                <OptionsButton onClick={() => { navigate("/kitchen") }} active={location.pathname === "/kitchen"}>
+                <OptionsButton onClick={() => { navigate("/kitchen") }} $active={location.pathname === "/kitchen"}>
                     Cozinha
                 </OptionsButton>
                 <OptionsButton>
@@ -73,8 +73,12 @@ const OptionsButton = styled.button`
     border-radius: 10px;
     cursor: pointer;
     transition: background 0.3s ease-in-out;
-    background-color: ${(props) => (props.active ? "darkgreen" : "transparent")};
+    background-color: ${(props) => (props.$active ? "darkgreen" : "transparent")};
     &:hover {
-        background-color: ${(props) => (props.active ? "darkgreen" : "darkgreen")};
+        background-color: ${(props) => (props.$active ? "darkgreen" : "darkgreen")};
     }
 `;
+
+OptionsButton.defaultProps = {
+    $active: false,
+};

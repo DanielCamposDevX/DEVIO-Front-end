@@ -10,6 +10,7 @@ export default function HomePage() {
 
   const [search, setSearch] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
+  const [selected, setSelected] = useState();
 
 
   return (
@@ -27,7 +28,7 @@ export default function HomePage() {
 
         <Categories />
 
-        <Products setShowConfirm={setShowConfirm} />
+        <Products setShowConfirm={setShowConfirm} setSelected={setSelected}/>
 
         <ButtonHolder>
           <Cancel>Cancelar</Cancel>
@@ -35,9 +36,9 @@ export default function HomePage() {
         </ButtonHolder>
 
         {
-          showConfirm && <ConfirmItem setShowConfirm={setShowConfirm} />
+          showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} selected={selected}/>
         }
-        
+
 
       </Main>
     </Page>

@@ -15,8 +15,8 @@ export default function ConfirmItem(props) {
       <Card>
         <h1>Revise seu pedido!</h1>
 
-        <ProductInfos setCount={setCount} count={count} />
-        <Additionals />
+        <ProductInfos setCount={setCount} count={count} product={props.selected}/>
+        <Additionals product={props.selected} />
 
         <h2>Observações</h2>
         <Observation placeholder="Adicione uma observação ao pedido" />

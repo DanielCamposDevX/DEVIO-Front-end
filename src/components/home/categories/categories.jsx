@@ -1,9 +1,16 @@
 import styled from "styled-components"
 import CategoryCard from "./category-card"
+import { useEffect, useState } from "react";
+import { getCategories } from "../../../services/get-categories";
 
 
 export default function Categories() {
 
+    const [categories, setCategories] = useState();
+
+    useEffect(() => {
+        getCategories(setCategories)
+    }, [])
 
 
     return (
@@ -11,13 +18,9 @@ export default function Categories() {
             <h2>Categorias</h2>
             <h3>Navegue por categoria</h3>
             <CategoryHolder>
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
+                {categories && categories.map((category) => (
+                    <CategoryCard key={category.id} image={category.image} name={category.name} />
+                ))}
             </CategoryHolder>
 
         </Main>

@@ -5,12 +5,13 @@ import { LuMinus } from "react-icons/lu";
 
 
 export default function ProductInfos(props) {
+
     return (
         <ProductContainer>
-            <SimpleProductCard />
+            <SimpleProductCard image={props.product.picture}/>
             <ProductInfo>
-                <h2>Smash da casa</h2>
-                <h4>Muito bom asjsajsajsajsajasjasjasjjasjsajasjasjasjasj</h4>
+                <h2>{props.product.name}</h2>
+                <h4>{props.product.description}</h4>
 
                 <QuantitySelector>
                     <StyledButton onClick={() => { props.setCount(props.count > 0 ? props.count - 1 : props.count) }}>
@@ -23,7 +24,7 @@ export default function ProductInfos(props) {
                 </QuantitySelector>
             </ProductInfo>
             <Price>
-                <h2>R$30,50</h2>
+                <h2>{(props.product.price/100).toFixed(2)}</h2>
             </Price>
         </ProductContainer>
     )
