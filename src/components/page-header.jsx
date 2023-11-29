@@ -1,8 +1,13 @@
 import styled from "styled-components"
 import { PiHamburgerDuotone } from "react-icons/pi";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 export default function Header() {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
     return (
         <Main>
             <Brand>
@@ -10,9 +15,15 @@ export default function Header() {
                 fastfood
             </Brand>
             <ButtonsContainer>
-                <OptionsButton>Pedidos</OptionsButton>
-                <OptionsButton>Cozinha</OptionsButton>
-                <OptionsButton>Retirada</OptionsButton>
+                <OptionsButton onClick={() => { navigate("/"); }} active={location.pathname === "/"}>
+                    Pedidos
+                </OptionsButton>
+                <OptionsButton onClick={() => { navigate("/kitchen") }} active={location.pathname === "/kitchen"}>
+                    Cozinha
+                </OptionsButton>
+                <OptionsButton>
+                    Retirada
+                </OptionsButton>
             </ButtonsContainer>
         </Main>
     )
@@ -53,11 +64,17 @@ const OptionsButton = styled.button`
     font-size: 14px;
     font-weight: 800;
     border: none;
-    background-color: darkgreen;
+    background-color: transparent;
     color: white;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 12px;
     padding-right: 12px;
     border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    background-color: ${(props) => (props.active ? "darkgreen" : "transparent")};
+    &:hover {
+        background-color: ${(props) => (props.active ? "darkgreen" : "darkgreen")};
+    }
 `;
