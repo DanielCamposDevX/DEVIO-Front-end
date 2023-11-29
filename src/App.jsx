@@ -26,6 +26,13 @@ function App() {
         <Categories />
 
         <Products />
+
+        <ButtonHolder>
+          <Cancel>Cancelar</Cancel>
+          <Finish>Finalizar pedido</Finish>
+        </ButtonHolder>
+
+
       </Main>
     </Page>
   )
@@ -105,4 +112,29 @@ const SearchButton = styled.button`
   cursor: pointer;
   border: none;
   color: gray;
+`
+
+const ButtonHolder = styled.div`
+  align-self: flex-end;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 60px;
+`
+
+const Finish = styled.button`
+  width: 300px;
+  padding: 20px;
+  background-color: gray;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+`
+
+const Cancel = styled.button`
+  width: 300px;
+  padding: 20px;
+  border: 2px solid gray;
+  color: gray;
+  border-radius: 12px;
+  cursor: pointer;
 `
