@@ -3,6 +3,7 @@ import Header from "./components/page-header"
 import styled from "styled-components"
 import { FaSearch } from "react-icons/fa";
 import Categories from "./components/categories/categories";
+import Products from "./components/produtos/products";
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
       <Header />
       <Main>
         <h1>Seja bem vindo!</h1>
-        
+
         <SearchGroup>
           <input type="text" placeholder="O que você procura?" value={search} onChange={e => setSearch(e.target.value)} />
           <SearchButton>
@@ -23,6 +24,8 @@ function App() {
         </SearchGroup>
 
         <Categories />
+
+        <Products />
       </Main>
     </Page>
   )
