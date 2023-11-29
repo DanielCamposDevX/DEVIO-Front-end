@@ -2,7 +2,7 @@ import styled from "styled-components"
 import ProductCard from "./product-card";
 
 
-export default function Products() {
+export default function Products(props) {
 
 
 
@@ -11,17 +11,12 @@ export default function Products() {
             <h2>Produtos</h2>
             <h3>Selecione um produto para adicionar ao seu pedido</h3>
             <ProductHolder>
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {
+                    Array.from({ length: 10 }).map((_, i) => (
+                        <ProductCard key={i} setShowConfirm={props.setShowConfirm} />
+                    ))
+                }
+
             </ProductHolder>
         </Main>
     )

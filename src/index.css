@@ -49,6 +49,11 @@ input:focus {
 	outline: none;
 }
 
+textarea:focus {
+	border: none;
+	outline: 1px solid rgba(0,0,0,0.2);
+}
+
 .burger-icon{
 	background-color: white;
 	border-radius: 1000px;

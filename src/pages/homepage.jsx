@@ -4,18 +4,20 @@ import styled from "styled-components"
 import { FaSearch } from "react-icons/fa";
 import Categories from "../components/categories/categories";
 import Products from "../components/produtos/products"
+import ConfirmItem from "../components/finish-item-order/finish-item-order";
 
 export default function HomePage() {
 
-    const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
 
 
-    return (
-        <Page>
+  return (
+    <Page>
       <Header />
       <Main>
         <h1>Seja bem vindo!</h1>
-        
+
         <SearchGroup>
           <input type="text" placeholder="O que você procura?" value={search} onChange={e => setSearch(e.target.value)} />
           <SearchButton>
@@ -25,15 +27,21 @@ export default function HomePage() {
 
         <Categories />
 
-        <Products />
+        <Products setShowConfirm={setShowConfirm} />
 
         <ButtonHolder>
           <Cancel>Cancelar</Cancel>
           <Finish>Finalizar pedido</Finish>
         </ButtonHolder>
+
+        {
+          showConfirm && <ConfirmItem setShowConfirm={setShowConfirm} />
+        }
+        
+
       </Main>
     </Page>
-    )
+  )
 }
 
 
