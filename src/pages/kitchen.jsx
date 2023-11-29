@@ -1,16 +1,24 @@
 import styled from "styled-components";
 import Header from "../components/page-header"
+import { Order } from "../components/kitchen/order";
 
-export default function KitchenPage(){
+export default function KitchenPage() {
 
-    return(
-        <Page>
-            <Header />
-            <Main>
-                Teste
-            </Main>
-        </Page>
-    )
+  return (
+    <Page>
+      <Header />
+      <Main>
+        <Doing>
+          <h1>Preparando:</h1>
+          <Order />
+        </Doing>
+        <Done>
+          <h1>Pronto:</h1>
+          <Order />
+        </Done>
+      </Main>
+    </Page>
+  )
 }
 
 const Page = styled.div`
@@ -28,6 +36,46 @@ const Main = styled.div`
   min-height: 100px;
 
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  h1{
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+  h2{
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  h3{
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
 `;
+
+
+const Doing = styled.div`
+  width: 50%;
+  border-right: 1px solid black;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+
+`
+
+
+const Done = styled.div`
+  width: 50%;
+  height:100%;  
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+  
+  main {
+    box-shadow: 1px 1px 12px 1px #06f10692;
+  }
+  button:last-child{
+    display: none
+  }
+`
