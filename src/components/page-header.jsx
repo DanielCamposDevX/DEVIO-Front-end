@@ -21,7 +21,7 @@ export default function Header() {
                 <OptionsButton onClick={() => { navigate("/kitchen") }} $active={location.pathname === "/kitchen"}>
                     Cozinha
                 </OptionsButton>
-                <OptionsButton>
+                <OptionsButton onClick={() => { navigate("/withdraw") }}>
                     Retirada
                 </OptionsButton>
             </ButtonsContainer>
