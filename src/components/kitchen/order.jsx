@@ -1,28 +1,48 @@
 import styled from "styled-components"
 import { FaCheck, FaXmark } from "react-icons/fa6";
 import { useState } from "react";
+import { deleteOrders } from "../../services/delete-orders";
+import { updateOrders } from "../../services/update-order";
+import { useNavigate } from "react-router-dom";
 
 
 
 
-export function Order() {
+export function Order(props) {
+
+    const navigate = useNavigate();
 
     const [open, setOpen] = useState(false);
 
 
     return (
         <Main>
-            <Holder onClick={() => { setOpen(!open) }}>
-                <OrderPic src="https://www.incrivel.com/_next/image/?url=https%3A%2F%2Fincrivel-prd.adtsys.com.br%2Fwp-content%2Fuploads%2F2022%2F11%2Fburger_carne_incri%CC%81vel.png&w=1920&q=75" />
-                <OrderTitleHolder>
-                    <h2>201 - Ricardo</h2>
-                    <h3>1x Smash da Casa</h3>
-                </OrderTitleHolder>
-                <ButtonsHolder>
-                    <Cancel><FaXmark /></Cancel>
-                    <Confirm><FaCheck /></Confirm>
-                </ButtonsHolder>
-            </Holder>
+            {props.order &&
+                (<Holder >
+                    <OrderPic onClick={() => { setOpen(!open) }} src={props.order.orderItems[0].food.picture} />
+
+                    <OrderTitleHolder onClick={() => { setOpen(!open) }}>
+                        <h2>{props.order.id} - {props.order.name}</h2>
+                        {props.order.orderItems && props.order.orderItems.map((item) => (
+                            <h3>{item.quantity} {item.food.name}</h3>
+                        ))}
+
+                    </OrderTitleHolder>
+
+                    <ButtonsHolder>
+                        <Cancel>
+                            <FaXmark onClick={
+                                () => { deleteOrders(props.order.id,navigate) }
+                            } />
+                        </Cancel>
+                        <Confirm>
+                            <FaCheck onClick={
+                                () => { updateOrders(props.order.id,props.order.name,"READY",null,navigate) }
+                            } />
+                        </Confirm>
+                    </ButtonsHolder>
+                </Holder>)
+            }
 
             {
                 open && (

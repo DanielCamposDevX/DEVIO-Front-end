@@ -1,8 +1,16 @@
 import styled from "styled-components";
 import Header from "../components/page-header"
 import { Order } from "../components/kitchen/order";
+import { useEffect, useState } from "react";
+import { getOrders } from "../services/get-orders";
 
 export default function KitchenPage() {
+
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    getOrders(setOrders)
+  }, [])
 
   return (
     <Page>
@@ -10,11 +18,28 @@ export default function KitchenPage() {
       <Main>
         <Doing>
           <h1>Preparando:</h1>
-          <Order />
+          {orders.length > 0 &&
+            orders.map((order) => {
+              if (order.status === "PAYED") {
+                return <Order key={order.id} order={order} />;
+              } else {
+                return null;
+              }
+            })
+          }
+
         </Doing>
         <Done>
           <h1>Pronto:</h1>
-          <Order />
+          {orders.length > 0 &&
+            orders.map((order) => {
+              if (order.status === "READY") {
+                return <Order key={order.id} order={order} />;
+              } else {
+                return null;
+              }
+            })
+          }
         </Done>
       </Main>
     </Page>
