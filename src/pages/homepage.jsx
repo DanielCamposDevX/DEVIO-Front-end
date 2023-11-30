@@ -24,6 +24,10 @@ export default function HomePage(props) {
 
   useEffect(() => {
     getProducts(setProducts);
+    const Id = localStorage.getItem("timeout");
+    console.log(Id);
+    clearInterval(Number(Id));
+    clearInterval(Number(Id));
   }, [])
   useEffect(() => {
     if (products) {

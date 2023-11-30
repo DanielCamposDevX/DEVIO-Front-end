@@ -86,7 +86,7 @@ const Doing = styled.div`
   min-height: 80vh;
   display: flex;
   flex-direction: column;
-
+  gap: 30px;
 `
 
 

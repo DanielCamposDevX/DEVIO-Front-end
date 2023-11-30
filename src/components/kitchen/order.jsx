@@ -24,20 +24,19 @@ export function Order(props) {
                     <OrderTitleHolder onClick={() => { setOpen(!open) }}>
                         <h2>{props.order.id} - {props.order.name}</h2>
                         {props.order.orderItems && props.order.orderItems.map((item) => (
-                            <h3>{item.quantity} {item.food.name}</h3>
+                            <h3>{item.quantity} x {item.food.name}</h3>
                         ))}
-
                     </OrderTitleHolder>
 
                     <ButtonsHolder>
                         <Cancel>
                             <FaXmark onClick={
-                                () => { deleteOrders(props.order.id,navigate) }
+                                () => { deleteOrders(props.order.id, navigate) }
                             } />
                         </Cancel>
                         <Confirm>
                             <FaCheck onClick={
-                                () => { updateOrders(props.order.id,props.order.name,"READY",null,navigate) }
+                                () => { updateOrders(props.order.id, props.order.name, "READY", null, navigate) }
                             } />
                         </Confirm>
                     </ButtonsHolder>
@@ -47,7 +46,15 @@ export function Order(props) {
             {
                 open && (
                     <Expansion>
-                        <h1>Observações</h1>
+                        <h2>Observações:</h2>
+                        {props.order.orderItems && props.order.orderItems.map((item) => (
+                            item.observation && (
+                                <>
+                                    <h3>{item.food.name}:</h3>
+                                    <textarea key={item.id} disabled>{item.observation}</textarea>
+                                </>
+                            )
+                        ))}
                     </Expansion>
                 )
             }
@@ -70,14 +77,15 @@ const Main = styled.main`
     padding-bottom: 5px;
     min-height: 60px;
     cursor: pointer;
-
 `
 
 const Holder = styled.div`
     flex: 1;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
+    padding-top: 10px;
+    padding-bottom: 10px;
 `
 
 const OrderPic = styled.img`
@@ -89,6 +97,8 @@ const OrderPic = styled.img`
 const OrderTitleHolder = styled.div`
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    gap: 8px;
 `
 
 const ButtonsHolder = styled.div`
@@ -118,5 +128,12 @@ const Cancel = styled.button`
 const Expansion = styled.div`
     display: flex;
     flex-direction: column;
-
+    margin-top: 40px;
+    gap: 20px;
+    textarea{
+        box-sizing: border-box;
+        resize: none;
+        padding: 10px;
+        min-height: 60px;
+    }
 `
