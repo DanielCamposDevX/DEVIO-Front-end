@@ -3,15 +3,20 @@ import styled from "styled-components";
 import { LuWallet } from "react-icons/lu";
 import CheckOut from "../components/home/checkout";
 import { useState } from "react";
-import CheckBox from "../components/home/checkbox";
+import SucessCard from "../components/payments/sucess-card";
 import PaymentMethod from "../components/payments/method";
+import { updateOrders } from "../services/update-order";
+import { useNavigate } from "react-router-dom";
 
 
 export default function PaymentPage(props) {
 
+    const navigate = useNavigate();
+
     const [name, setName] = useState("");
     const [method, setMethod] = useState();
     const [money, setMoney] = useState(0);
+    const [finished, setFinished] = useState(false);
 
     const change = ((money - (props.ordered ? props.ordered.total / 100 : 0))).toFixed(2);
 
@@ -32,7 +37,7 @@ export default function PaymentPage(props) {
                     <InputContainer>
                         <div>
                             <label><h2>Nome do Cliente</h2></label>
-                            <NameInput type="text" />
+                            <NameInput type="text" value={name} onChange={e => setName(e.target.value)} />
                         </div>
                         <div>
                             <label><h2>Código</h2></label>
@@ -46,7 +51,7 @@ export default function PaymentPage(props) {
                     </h2>
                     <PaymentHolder>
                         {methods.map((pay) => (
-                            <PaymentMethod method={pay} setMethod={setMethod} selected={method} />
+                            <PaymentMethod key={pay.id} method={pay} setMethod={setMethod} selected={method} />
                         ))}
                         {method && method.id === 3 && (
                             <InputContainer>
@@ -68,15 +73,16 @@ export default function PaymentPage(props) {
 
                         <ButtonHolder>
                             <Cancel >Cancelar</Cancel>
-                            <Finish>
+                            <Finish onClick={() => updateOrders(props.ordered.id, name, "PAYED",setFinished,navigate)}>
                                 Pagar
                             </Finish>
                         </ButtonHolder>
                     </PaymentHolder>
-
                 </Payment>
+                {finished &&
+                    <SucessCard />
+                }
             </Main>
-
         </Page>
 
     )
