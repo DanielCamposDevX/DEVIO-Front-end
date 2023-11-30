@@ -103,6 +103,7 @@ const Done = styled.div`
   padding-left: 50px;
   display: flex;
   flex-direction: column;
+  gap: 30px;
   
   main {
     box-shadow: 1px 1px 12px 1px #06f10692;

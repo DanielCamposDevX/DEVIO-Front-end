@@ -92,6 +92,9 @@ const Container = styled.div`
     h2{
         text-align: center;
     }
+    h4{
+        text-align: center;
+    }
 `
 
 const Price = styled.h2`
