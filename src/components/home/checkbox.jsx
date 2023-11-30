@@ -2,12 +2,17 @@ import styled from "styled-components";
 
 
 
-export default function CheckBox() {
+export default function CheckBox({ additionalId, handleCheckboxChange }) {
+  const handleChange = (event) => {
+    const isChecked = event.target.checked;
+    handleCheckboxChange(additionalId, isChecked);
+  };
+
   return (
     <CheckboxWrapper>
       <div className="round">
-        <input type="checkbox" id="checkbox-18" />
-        <label htmlFor="checkbox-18"></label>
+        <input type="checkbox" id={`checkbox-${additionalId}`} onChange={handleChange} />
+        <label htmlFor={`checkbox-${additionalId}`}></label>
       </div>
     </CheckboxWrapper>
   );

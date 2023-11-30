@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function CategoryCard(props) {
 
     return (
-        <Main>
+        <Main onClick={() => { props.handleFilter(props.id) }}>
             <Ilustration src={props.image} alt="Hamburg" />
             <h2>{props.name}</h2>
         </Main>

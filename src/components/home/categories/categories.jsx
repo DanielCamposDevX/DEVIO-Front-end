@@ -2,9 +2,11 @@ import styled from "styled-components"
 import CategoryCard from "./category-card"
 import { useEffect, useState } from "react";
 import { getCategories } from "../../../services/get-categories";
+import { FaXmark } from "react-icons/fa6";
 
 
-export default function Categories() {
+
+export default function Categories(props) {
 
     const [categories, setCategories] = useState();
 
@@ -12,15 +14,32 @@ export default function Categories() {
         getCategories(setCategories)
     }, [])
 
+    function handleFilter(id) {
+        props.setFilterCat(id)
+    }
 
     return (
         <Main>
-            <h2>Categorias</h2>
+            <h2>
+                Categorias
+                {props.filterCat && (
+                    <Return onClick={()=>{props.setFilterCat(null)}}>
+                        <FaXmark />
+                    </Return>
+                )}
+            </h2>
             <h3>Navegue por categoria</h3>
             <CategoryHolder>
                 {categories && categories.map((category) => (
-                    <CategoryCard key={category.id} image={category.image} name={category.name} />
+                    <CategoryCard
+                        key={category.id}
+                        handleFilter={handleFilter}
+                        id={category.id}
+                        image={category.image}
+                        name={category.name}
+                    />
                 ))}
+
             </CategoryHolder>
 
         </Main>
@@ -59,3 +78,13 @@ const CategoryHolder = styled.div`
         background-color: transparent;
     };
 `;
+
+const Return = styled.button`
+    margin-left: 10px;
+    border: none;
+    background-color: lightgreen;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+`

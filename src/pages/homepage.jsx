@@ -1,17 +1,42 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Header from "../components/page-header"
 import styled from "styled-components"
 import { FaSearch } from "react-icons/fa";
 import Categories from "../components/home/categories/categories";
 import Products from "../components/home/produtos/products"
 import ConfirmItem from "../components/home/finish-item-order/finish-item-order";
+import { getProducts } from "../services/get-products"
 
 export default function HomePage() {
 
   const [search, setSearch] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const [selected, setSelected] = useState();
+  const [products, setProducts] = useState();
+  const [filtered, setFiltered] = useState();
+  const [filterCat, setFilterCat] = useState();
+  const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    getProducts(setProducts);
+  }, [])
+
+  useEffect(() => {
+    if (products) {
+      const filteredProducts = products.filter((product) =>
+        filterCat ? product.categorieId === filterCat : true
+      );
+      setFiltered(filteredProducts);
+    }
+  }, [filterCat])
+
+  function handleSearch() {
+    const searchText = search.toLowerCase();
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(searchText)
+    );
+    setFiltered(filteredProducts);
+  }
 
   return (
     <Page>
@@ -20,15 +45,20 @@ export default function HomePage() {
         <h1>Seja bem vindo!</h1>
 
         <SearchGroup>
-          <input type="text" placeholder="O que você procura?" value={search} onChange={e => setSearch(e.target.value)} />
-          <SearchButton>
+          <input type="text" placeholder="O que você procura?"
+            value={search}
+            onChange={e => { setSearch(e.target.value); handleSearch() }}
+          />
+
+          <SearchButton onClick={() => { handleSearch() }}>
             <FaSearch />
           </SearchButton>
+
         </SearchGroup>
 
-        <Categories />
+        <Categories setFilterCat={setFilterCat} filterCat={filterCat} />
 
-        <Products setShowConfirm={setShowConfirm} setSelected={setSelected}/>
+        <Products setShowConfirm={setShowConfirm} setSelected={setSelected} products={filtered ? filtered : products} />
 
         <ButtonHolder>
           <Cancel>Cancelar</Cancel>
@@ -36,7 +66,7 @@ export default function HomePage() {
         </ButtonHolder>
 
         {
-          showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} selected={selected}/>
+          showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} selected={selected} />
         }
 
 

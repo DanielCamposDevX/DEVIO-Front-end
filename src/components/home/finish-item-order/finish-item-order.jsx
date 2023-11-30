@@ -8,18 +8,48 @@ import ProductInfos from "./product";
 export default function ConfirmItem(props) {
 
   const [count, setCount] = useState(1);
+  const [description, setDescription] = useState("")
+  const [selected, setSelected] = useState([]);
+
+  function handleSubmit(){
+
+  }
+
+
+  const handleCheckboxChange = (additionalId, isChecked) => {
+    if (isChecked) {
+      setSelected(prevSelected => [...prevSelected, additionalId]);
+    } else {
+      setSelected(prevSelected => prevSelected.filter(id => id !== additionalId));
+    }
+  };
 
   return (
     <Page >
-      <Mask onClick={() => { props.setShowConfirm(false) }}/>
+      <Mask onClick={() => { props.setShowConfirm(false) }} />
       <Card>
         <h1>Revise seu pedido!</h1>
 
-        <ProductInfos setCount={setCount} count={count} product={props.selected}/>
-        <Additionals product={props.selected} />
+        <ProductInfos
+          setCount={setCount}
+          count={count}
+          product={props.selected}
+        />
+
+        <Additionals
+          product={props.selected}
+          setSelected={setSelected}
+          selected={selected}
+          handleCheckboxChange={handleCheckboxChange}
+        />
 
         <h2>Observações</h2>
-        <Observation placeholder="Adicione uma observação ao pedido" />
+        <Observation placeholder="Adicione uma observação ao pedido" value={description} onChange={e => { setDescription(e.target.value) }} />
+
+        <ButtonHolder>
+          <Cancel onClick={() => props.setShowConfirm(false)}>Cancelar</Cancel>
+          <Finish onClick={() => handleSubmit()}>Finalizar pedido</Finish>
+        </ButtonHolder>
       </Card>
     </Page>
   )
@@ -93,4 +123,43 @@ const Observation = styled.textarea`
   border: none;
   border-radius: 12px;
   resize: none;
+`
+
+const ButtonHolder = styled.div`
+  align-self: flex-end;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+`;
+
+const Finish = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  width: 200px;
+  padding: 20px;
+  background-color: green;
+  border: none;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600px;
+  &:hover{
+    background-color: darkgreen;
+  }
+`;
+
+const Cancel = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  width: 200px;
+  padding: 20px;
+  border: 2px solid gray;
+  color: gray;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600px;
+  &:hover{
+    background-color: gray;
+    color: white;
+  }
 `

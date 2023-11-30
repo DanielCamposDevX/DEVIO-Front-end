@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { getAdditionals } from "../../../services/get-additionals";
 
 
-export default function Additionals() {
+export default function Additionals(props) {
 
     const [additionals, setAdditionals] = useState();
 
@@ -22,7 +22,7 @@ export default function Additionals() {
             <AdditionalsHolder>
                 {additionals && (
                     additionals.map((extra) => (
-                        <AdditionalCard key={extra.id} extra={extra} />
+                        <AdditionalCard key={extra.id} extra={extra}  handleCheckboxChange={props.handleCheckboxChange} />
                     ))
                 )}
 

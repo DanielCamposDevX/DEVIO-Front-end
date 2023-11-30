@@ -13,7 +13,7 @@ export default function AdditionalCard(props) {
             </LeftContainer>
             <RightContainer>
                 R$ {(props.extra.price/100).toFixed(2)}
-                <CheckBox />
+                <CheckBox additionalId={props.extra.id} handleCheckboxChange={props.handleCheckboxChange} />
             </RightContainer>
         </Main>
     )
