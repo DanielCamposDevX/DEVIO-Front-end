@@ -3,6 +3,7 @@ FastFood! Uma forma rápida de fácil de registrar sua venda!
 
 Uma interface intuitiva e de facil inserção no carrinho que facilita não só para a empresa mas também para o usuário na hora da fome!
 
+DEPLOY:https://devio-front-end.vercel.app/
 
 # Para rodar o projeto:
 USE O NODE ATUALIZADO!!
