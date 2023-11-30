@@ -8,19 +8,31 @@ import ProductInfos from "./product";
 export default function ConfirmItem(props) {
 
   const [count, setCount] = useState(1);
-  const [description, setDescription] = useState("")
-  const [selected, setSelected] = useState([]);
+  const [observation, setObservation] = useState("")
+  const [selectedExtra, setSelectedExtra] = useState([]);
 
   function handleSubmit(){
-
+    const prevCart = props.cart
+    props.setCart([prevCart,{
+      extras: selectedExtra,
+      quantity: count,
+      foodId: props.product.id,
+      observation: observation
+    }])
+    console.log([prevCart,{
+      extras: selectedExtra,
+      quantity: count,
+      foodId: props.product.id,
+      observation: observation
+    }])
   }
 
 
   const handleCheckboxChange = (additionalId, isChecked) => {
     if (isChecked) {
-      setSelected(prevSelected => [...prevSelected, additionalId]);
+      setSelectedExtra(prevSelected => [...prevSelected, additionalId]);
     } else {
-      setSelected(prevSelected => prevSelected.filter(id => id !== additionalId));
+      setSelectedExtra(prevSelected => prevSelected.filter(id => id !== additionalId));
     }
   };
 
@@ -33,21 +45,21 @@ export default function ConfirmItem(props) {
         <ProductInfos
           setCount={setCount}
           count={count}
-          product={props.selected}
+          product={props.product}
         />
 
         <Additionals
-          product={props.selected}
-          setSelected={setSelected}
-          selected={selected}
+          product={props.product}
+          setSelected={setSelectedExtra}
+          selected={selectedExtra}
           handleCheckboxChange={handleCheckboxChange}
         />
 
         <h2>Observações</h2>
-        <Observation placeholder="Adicione uma observação ao pedido" value={description} onChange={e => { setDescription(e.target.value) }} />
+        <Observation placeholder="Adicione uma observação ao pedido" value={observation} onChange={e => { setObservation(e.target.value) }} />
 
         <ButtonHolder>
-          <Cancel onClick={() => props.setShowConfirm(false)}>Cancelar</Cancel>
+          <Continue onClick={() => props.setShowConfirm(false)}>Continuar Comprando</Continue>
           <Finish onClick={() => handleSubmit()}>Finalizar pedido</Finish>
         </ButtonHolder>
       </Card>
@@ -148,9 +160,9 @@ const Finish = styled.button`
   }
 `;
 
-const Cancel = styled.button`
+const Continue = styled.button`
   font-family: 'Montserrat', sans-serif;
-  width: 200px;
+  width: 250px;
   padding: 20px;
   border: 2px solid gray;
   color: gray;

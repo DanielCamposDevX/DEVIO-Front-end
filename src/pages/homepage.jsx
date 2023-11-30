@@ -58,7 +58,7 @@ export default function HomePage() {
 
         <Categories setFilterCat={setFilterCat} filterCat={filterCat} />
 
-        <Products setShowConfirm={setShowConfirm} setSelected={setSelected} products={filtered ? filtered : products} />
+        <Products setShowConfirm={setShowConfirm} setSelected={setSelected} products={filtered ? filtered : products} cart={cart} />
 
         <ButtonHolder>
           <Cancel>Cancelar</Cancel>
@@ -66,7 +66,7 @@ export default function HomePage() {
         </ButtonHolder>
 
         {
-          showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} selected={selected} />
+          showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} product={selected} setCart={setCart} cart={cart}/>
         }
 
 
@@ -174,3 +174,4 @@ const Cancel = styled.button`
   border-radius: 12px;
   cursor: pointer;
 `
+

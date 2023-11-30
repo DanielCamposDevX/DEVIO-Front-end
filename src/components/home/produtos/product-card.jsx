@@ -1,18 +1,30 @@
 import styled from "styled-components";
+import { FaCheck } from "react-icons/fa6";
 
 export default function ProductCard(props) {
 
-
-    return (
-        <Card onClick={() => { 
+    function handleClick(){
+        if (!props.cart.some(item => item.foodId === props.product.id)) {
             props.setShowConfirm(true);
             props.setSelected(props.product)
-            }}>
+        }
+    }
+
+    return (
+        <Card onClick={() => {handleClick()}}>
+            {
+                props.cart &&
+                    props.cart.some(item => item.foodId === props.product.id) ?
+                    <Selected>
+                        <FaCheck />
+                    </Selected> :
+                    null
+            }
             <Container>
                 <ProductImage src={props.product.picture} />
                 <h2>{props.product.name}</h2>
                 <h4>{props.product.subtitle}</h4>
-                <Price>R$ {(props.product.price/100).toFixed(2)}</Price>
+                <Price>R$ {(props.product.price / 100).toFixed(2)}</Price>
             </Container>
         </Card>
     )
@@ -20,7 +32,23 @@ export default function ProductCard(props) {
 
 
 
+const Selected = styled.div`
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #008f00a3;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
+`
+
 const Card = styled.div`
+  position: relative;
   width: 250px;
   height: 310px;
   display: flex;

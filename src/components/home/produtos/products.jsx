@@ -13,7 +13,7 @@ export default function Products(props) {
             <ProductHolder>
                 { props.products &&
                    props.products.map((food) => (
-                        <ProductCard key={food.id} setShowConfirm={props.setShowConfirm} product={food} setSelected={props.setSelected} />
+                        <ProductCard key={food.id} setShowConfirm={props.setShowConfirm} product={food} setSelected={props.setSelected} cart={props.cart} />
                     ))
                 }
 
