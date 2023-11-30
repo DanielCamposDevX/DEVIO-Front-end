@@ -3,7 +3,6 @@ import styled from "styled-components"
 export default function CheckOut(props) {
 
     function calculateTotal(cart) {
-        console.log(cart);
         return cart.reduce((total, item) => total + item.price, 0) / 100;
     }
 
@@ -20,7 +19,8 @@ export default function CheckOut(props) {
                     <h3>Total do pedido</h3>
                     <h2>R$ {calculateTotal(props.cart).toFixed(2)}</h2>
                 </Total>
-            </Main>)}
+            </Main>
+            )}
         </>
     )
 }

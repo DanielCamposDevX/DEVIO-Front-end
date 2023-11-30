@@ -7,6 +7,7 @@ import Products from "../components/home/produtos/products"
 import ConfirmItem from "../components/home/finish-item-order/finish-item-order";
 import { getProducts } from "../services/get-products"
 import CheckOut from "../components/home/checkout";
+import { postOrders } from "../services/post-orders";
 
 export default function HomePage() {
 
@@ -21,7 +22,6 @@ export default function HomePage() {
   useEffect(() => {
     getProducts(setProducts);
   }, [])
-
   useEffect(() => {
     if (products) {
       const filteredProducts = products.filter((product) =>
@@ -63,7 +63,7 @@ export default function HomePage() {
 
         <ButtonHolder>
           <Cancel>Cancelar</Cancel>
-          <Finish>Finalizar pedido</Finish>
+          <Finish onClick={() => { postOrders(cart);}}>Finalizar pedido</Finish>
         </ButtonHolder>
 
         {
