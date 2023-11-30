@@ -6,6 +6,7 @@ import Categories from "../components/home/categories/categories";
 import Products from "../components/home/produtos/products"
 import ConfirmItem from "../components/home/finish-item-order/finish-item-order";
 import { getProducts } from "../services/get-products"
+import CheckOut from "../components/home/checkout";
 
 export default function HomePage() {
 
@@ -69,6 +70,7 @@ export default function HomePage() {
           showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} product={selected} setCart={setCart} cart={cart}/>
         }
 
+        {cart && <CheckOut cart={cart} />}
 
       </Main>
     </Page>

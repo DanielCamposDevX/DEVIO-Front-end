@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components"
 import Additionals from "./additionals";
 import ProductInfos from "./product";
+import { getAdditionals } from "../../../services/get-additionals";
+import MiniCheckOut from "./mini-checkout";
 
 
 
@@ -10,21 +12,25 @@ export default function ConfirmItem(props) {
   const [count, setCount] = useState(1);
   const [observation, setObservation] = useState("")
   const [selectedExtra, setSelectedExtra] = useState([]);
+  const [additionals, setAdditionals] = useState();
 
-  function handleSubmit(){
+  useEffect(() => {
+    getAdditionals(setAdditionals);
+  }, [])
+
+  function handleSubmit() {
+    const total = (props.product.price * count) + additionals.reduce((total, item) => selectedExtra.includes(item.id) ? total + item.price : total, 0)
+
     const prevCart = props.cart
-    props.setCart([prevCart,{
+    props.setCart([...prevCart, {
       extras: selectedExtra,
       quantity: count,
       foodId: props.product.id,
-      observation: observation
+      observation: observation,
+      price: total,
+      name: props.product.name
     }])
-    console.log([prevCart,{
-      extras: selectedExtra,
-      quantity: count,
-      foodId: props.product.id,
-      observation: observation
-    }])
+    props.setShowConfirm(false)
   }
 
 
@@ -49,17 +55,18 @@ export default function ConfirmItem(props) {
         />
 
         <Additionals
-          product={props.product}
           setSelected={setSelectedExtra}
           selected={selectedExtra}
+          additionals={additionals}
           handleCheckboxChange={handleCheckboxChange}
         />
 
         <h2>Observações</h2>
         <Observation placeholder="Adicione uma observação ao pedido" value={observation} onChange={e => { setObservation(e.target.value) }} />
 
+        <MiniCheckOut cart={props.product} count={count} additionals={additionals ? additionals.filter(additional => selectedExtra.includes(additional.id)) : null} />
         <ButtonHolder>
-          <Continue onClick={() => props.setShowConfirm(false)}>Continuar Comprando</Continue>
+          <Continue onClick={() => handleSubmit()}>Continuar Comprando</Continue>
           <Finish onClick={() => handleSubmit()}>Finalizar pedido</Finish>
         </ButtonHolder>
       </Card>

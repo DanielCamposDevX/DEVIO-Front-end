@@ -1,16 +1,11 @@
 import styled from "styled-components"
 import AdditionalCard from "./aditional-card"
-import { useEffect, useState } from "react"
-import { getAdditionals } from "../../../services/get-additionals";
+
 
 
 export default function Additionals(props) {
 
-    const [additionals, setAdditionals] = useState();
 
-    useEffect(() => {
-        getAdditionals(setAdditionals);
-    }, [])
 
 
 
@@ -20,8 +15,8 @@ export default function Additionals(props) {
             <h4>Selecione os ingredientes que você quer adicionar a mais no seu lanche</h4>
 
             <AdditionalsHolder>
-                {additionals && (
-                    additionals.map((extra) => (
+                {props.additionals && (
+                    props.additionals.map((extra) => (
                         <AdditionalCard key={extra.id} extra={extra}  handleCheckboxChange={props.handleCheckboxChange} />
                     ))
                 )}
