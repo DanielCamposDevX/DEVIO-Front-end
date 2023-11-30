@@ -36,6 +36,9 @@ const Main = styled.div`
     gap: 20px;
 
     border: 1px solid black;
+    @media (max-width: 700px) {
+        width: 95%;
+  }
 `
 
 const Item = styled.div`

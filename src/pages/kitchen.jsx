@@ -77,6 +77,9 @@ const Main = styled.div`
     font-weight: 400;
     letter-spacing: 1px;
   }
+  @media (max-width: 700px) {
+        flex-direction: column;
+  }
 `;
 
 
@@ -87,6 +90,10 @@ const Doing = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  @media (max-width: 700px) {
+        width: 100%;
+        border: none;
+  }
 `
 
 
@@ -102,5 +109,10 @@ const Done = styled.div`
   }
   button:last-child{
     display: none
+  }
+  @media (max-width: 700px) {
+        width: 100%;
+        padding-left: 0px;
+        margin-bottom: 30px;
   }
 `

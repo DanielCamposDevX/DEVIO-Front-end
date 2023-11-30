@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <Main>
-            <Brand>
+            <Brand onClick={() => { navigate("/"); }}>
                 <PiHamburgerDuotone className="burger-icon" />
                 fastfood
             </Brand>

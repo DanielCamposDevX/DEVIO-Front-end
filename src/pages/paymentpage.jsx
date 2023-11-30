@@ -73,7 +73,7 @@ export default function PaymentPage(props) {
 
                         <ButtonHolder>
                             <Cancel >Cancelar</Cancel>
-                            <Finish onClick={() => updateOrders(props.ordered.id, name, "PAYED",setFinished,navigate)}>
+                            <Finish onClick={() => updateOrders(props.ordered.id, name, "PAYED", setFinished, navigate)}>
                                 Pagar
                             </Finish>
                         </ButtonHolder>
@@ -114,6 +114,11 @@ const Main = styled.div`
     font-weight: 800;
     letter-spacing: 1px;
   }
+  @media (max-width: 700px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+  }
 `;
 
 
@@ -123,6 +128,9 @@ const Resume = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 700px) {
+        align-items: center;
+  }
 `
 
 
@@ -133,6 +141,9 @@ const Payment = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+    @media (max-width: 700px) {
+        align-items: center;
+  }
 `
 
 const PaymentHolder = styled.div` 
@@ -140,6 +151,10 @@ const PaymentHolder = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
+    @media (max-width: 700px) {
+        margin-right: 40px;
+        align-items: center;
+  }
 `
 
 
@@ -184,6 +199,10 @@ const ButtonHolder = styled.div`
   display: flex;
   gap: 20px;
   margin-bottom: 60px;
+  @media (max-width: 700px) {
+    align-self: center;
+  justify-self: center;
+  }
 `;
 
 const Finish = styled.button`
@@ -201,7 +220,7 @@ const Finish = styled.button`
     background-color: gray
   }
   @media (max-width: 700px) {
-        width: 40%;
+        width: 100px;
         padding: 5px;
   }
 `;
@@ -218,7 +237,7 @@ const Cancel = styled.button`
     background-color: gray;
   }
   @media (max-width: 700px) {
-        width: 40%;
-        padding: 5px;
+        width: 100px;
+        padding: 10px;
   }
 `
