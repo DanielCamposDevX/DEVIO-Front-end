@@ -61,6 +61,9 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
+    h2{
+        text-align: center;
+    }
 `
 
 const Price = styled.h2`

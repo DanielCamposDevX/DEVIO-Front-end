@@ -1,18 +1,18 @@
 import styled from "styled-components"
 import CheckBox from "../checkbox"
 
-export default function AdditionalCard() {
+export default function AdditionalCard(props) {
     return (
         <Main>
             <LeftContainer>
-                <img src="https://media.gazetadopovo.com.br/2023/03/03100530/bigstock-Turkey-Bacon-Cooked-On-A-White-469746969-960x540.jpg" alt="Imagem" />
+                <img src={props.extra.image} alt="Imagem" />
                 <NameHolder>
-                    <h5>Bacon</h5>
-                    <h6>10g</h6>
+                    <h5>{props.extra.name}</h5>
+                    <h6>{props.extra.description}</h6>
                 </NameHolder>
             </LeftContainer>
             <RightContainer>
-                R$ 1,00
+                R$ {(props.extra.price/100).toFixed(2)}
                 <CheckBox />
             </RightContainer>
         </Main>
@@ -32,7 +32,7 @@ const LeftContainer = styled.div`
     align-items: center;
     gap: 14px;
     img{
-        height: 70px;
+        width: 100px;
         border-radius: 12px;
         box-shadow: 2px 2px 6px 3px #1b8a1b34;
         border: 1px solid rgba(0,0,0,0.3);

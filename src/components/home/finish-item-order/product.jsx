@@ -14,7 +14,7 @@ export default function ProductInfos(props) {
                 <h4>{props.product.description}</h4>
 
                 <QuantitySelector>
-                    <StyledButton onClick={() => { props.setCount(props.count > 0 ? props.count - 1 : props.count) }}>
+                    <StyledButton onClick={() => { props.setCount(props.count > 1 ? props.count - 1 : props.count) }}>
                         <LuMinus size="30px" />
                     </StyledButton>
                     {props.count}
