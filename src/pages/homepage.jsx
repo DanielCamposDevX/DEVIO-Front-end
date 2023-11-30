@@ -8,8 +8,11 @@ import ConfirmItem from "../components/home/finish-item-order/finish-item-order"
 import { getProducts } from "../services/get-products"
 import CheckOut from "../components/home/checkout";
 import { postOrders } from "../services/post-orders";
+import { useNavigate } from "react-router-dom";
 
-export default function HomePage() {
+export default function HomePage(props) {
+
+  const navigate = useNavigate()
 
   const [search, setSearch] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
@@ -62,12 +65,18 @@ export default function HomePage() {
         <Products setShowConfirm={setShowConfirm} setSelected={setSelected} products={filtered ? filtered : products} cart={cart} />
 
         <ButtonHolder>
-          <Cancel>Cancelar</Cancel>
-          <Finish onClick={() => { postOrders(cart);}}>Finalizar pedido</Finish>
+          <Cancel onClick={() => { setCart([]) }}>Cancelar</Cancel>
+          <Finish disabled={cart.length < 1 ? true : false} onClick={() => {
+            postOrders(cart, props.setOrdered);
+            navigate("/payment")
+          }
+          }>
+            Finalizar pedido
+          </Finish>
         </ButtonHolder>
 
         {
-          showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} product={selected} setCart={setCart} cart={cart}/>
+          showConfirm && selected && <ConfirmItem setShowConfirm={setShowConfirm} product={selected} setCart={setCart} cart={cart} />
         }
 
         {cart && <CheckOut cart={cart} />}
@@ -163,12 +172,19 @@ const ButtonHolder = styled.div`
 `;
 
 const Finish = styled.button`
+  border: none;
   width: 300px;
   padding: 20px;
-  background-color: gray;
+  background-color: green;
   color: white;
   border-radius: 12px;
   cursor: pointer;
+  &:hover{
+    background-color: darkgreen
+  }
+  &:disabled{
+    background-color: gray
+  }
   @media (max-width: 700px) {
         width: 40%;
         padding: 5px;
@@ -182,6 +198,10 @@ const Cancel = styled.button`
   color: gray;
   border-radius: 12px;
   cursor: pointer;
+  &:hover{
+    color: white;
+    background-color: gray;
+  }
   @media (max-width: 700px) {
         width: 40%;
         padding: 5px;

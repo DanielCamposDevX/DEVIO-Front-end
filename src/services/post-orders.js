@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export async function postOrders(cart) {
+export async function postOrders(cart,setOrdered) {
 
     const updatedCart = cart.map(item => {
         const { price, name, ...rest } = item;
@@ -9,9 +9,10 @@ export async function postOrders(cart) {
     console.log({ items: updatedCart })
     axios.post(`${import.meta.env.VITE_API_URL}/orders`, { items: updatedCart })
         .then((res) => {
-            console.log(res.data)
+            console.log(res.data);
+            setOrdered(res.data);
         })
         .catch((err) => {
-            console.log(err.response.data);
+            alert(err.response.data);
         })
 }

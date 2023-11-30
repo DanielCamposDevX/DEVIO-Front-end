@@ -2,13 +2,19 @@ import { useState } from "react"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from "./pages/homepage"
 import KitchenPage from "./pages/kitchen"
+import PaymentPage from "./pages/paymentpage"
 
 export function App() {
+
+  const [ordered, setOrdered] = useState()
+
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<HomePage setOrdered={setOrdered} />} />
         <Route path='/kitchen' element={<KitchenPage />} />
+        <Route path='/payment' element={<PaymentPage ordered={ordered} />} />
       </Routes>
     </BrowserRouter>
   )

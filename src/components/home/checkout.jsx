@@ -11,13 +11,13 @@ export default function CheckOut(props) {
             {props.cart.length > 0 && (<Main>
                 {(
                     props.cart.map((item, index) => (
-                        <Item key={index}><h3>{item.quantity} x {item.name}</h3> <h3>{(item.price / 100).toFixed(2)}</h3></Item>
+                        <Item key={index}><h3>{item.quantity} x {item.name || item.food.name}</h3> <h3>{(item.price / 100 || item.food.price / 100).toFixed(2)}</h3></Item>
                     ))
                 )}
 
                 <Total>
                     <h3>Total do pedido</h3>
-                    <h2>R$ {calculateTotal(props.cart).toFixed(2)}</h2>
+                    <h2>R$ {props.total ? (props.total / 100).toFixed(2) : calculateTotal(props.cart).toFixed(2)}</h2>
                 </Total>
             </Main>
             )}
