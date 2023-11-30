@@ -1,12 +1,13 @@
 import Header from "../components/page-header"
 import styled from "styled-components";
 import { LuWallet } from "react-icons/lu";
-import CheckOut from "../components/home/checkout";
 import { useState } from "react";
-import SucessCard from "../components/payments/sucess-card";
-import PaymentMethod from "../components/payments/method";
 import { updateOrders } from "../services/update-order";
 import { useNavigate } from "react-router-dom";
+import CheckOut from "../components/home/checkout";
+import ResumeCard from "../components/payments/resume";
+import SucessCard from "../components/payments/sucess-card";
+import PaymentMethod from "../components/payments/method";
 
 
 export default function PaymentPage(props) {
@@ -16,7 +17,8 @@ export default function PaymentPage(props) {
     const [name, setName] = useState("");
     const [method, setMethod] = useState();
     const [money, setMoney] = useState(0);
-    const [finished, setFinished] = useState(false);
+    const [finished, setFinished] = useState(0);
+
 
     const change = ((money - (props.ordered ? props.ordered.total / 100 : 0))).toFixed(2);
 
@@ -73,13 +75,24 @@ export default function PaymentPage(props) {
 
                         <ButtonHolder>
                             <Cancel >Cancelar</Cancel>
-                            <Finish onClick={() => updateOrders(props.ordered.id, name, "PAYED", setFinished, navigate)}>
+                            <Finish onClick={() => updateOrders(props.ordered.id, name, "PAYED", setFinished)}>
                                 Pagar
                             </Finish>
                         </ButtonHolder>
                     </PaymentHolder>
                 </Payment>
-                {finished &&
+                {finished === 1 &&
+                    <ResumeCard
+                        cart={props.ordered.orderItems}
+                        total={props.ordered.total}
+                        pay={method.name}
+                        money={money}
+                        change={change}
+                        name={name}
+                        setFinished={setFinished}
+                    />
+                }
+                {finished === 2 &&
                     <SucessCard />
                 }
             </Main>
@@ -241,3 +254,4 @@ const Cancel = styled.button`
         padding: 10px;
   }
 `
+
