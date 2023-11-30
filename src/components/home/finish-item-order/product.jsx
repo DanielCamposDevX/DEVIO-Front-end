@@ -8,7 +8,7 @@ export default function ProductInfos(props) {
 
     return (
         <ProductContainer>
-            <SimpleProductCard image={props.product.picture}/>
+            <SimpleProductCard image={props.product.picture} />
             <ProductInfo>
                 <h2>{props.product.name}</h2>
                 <h4>{props.product.description}</h4>
@@ -24,7 +24,7 @@ export default function ProductInfos(props) {
                 </QuantitySelector>
             </ProductInfo>
             <Price>
-                <h2>{(props.product.price/100).toFixed(2)}</h2>
+                <h2>{(props.product.price / 100).toFixed(2)}</h2>
             </Price>
         </ProductContainer>
     )
@@ -35,7 +35,10 @@ const ProductContainer = styled.div`
     display: flex;
     width: 100%;
     gap: 40px;
-    
+    @media (max-width: 700px) {
+        flex-direction: column;
+        align-items: center;
+  }
 `
 
 const ProductInfo = styled.div`
@@ -44,6 +47,13 @@ const ProductInfo = styled.div`
     align-items: start;
     justify-content: space-between;
     width: 30%;
+    @media (max-width: 700px) {
+        width: 100%;
+        padding: 5px;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+  }
 `
 
 const QuantitySelector = styled.div`

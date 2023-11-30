@@ -41,6 +41,9 @@ const Main = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 700px) {
+        padding: 5px;
+  }
 `;
 
 const Brand = styled.div`
@@ -56,7 +59,7 @@ const Brand = styled.div`
 const ButtonsContainer = styled.div`
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 `;
 
 const OptionsButton = styled.button`
@@ -77,6 +80,10 @@ const OptionsButton = styled.button`
     &:hover {
         background-color: ${(props) => (props.$active ? "darkgreen" : "darkgreen")};
     }
+    @media (max-width: 700px) {
+        padding: 10px;
+        font-size: 10px;
+  }
 `;
 
 OptionsButton.defaultProps = {

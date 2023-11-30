@@ -4,6 +4,8 @@ import Additionals from "./additionals";
 import ProductInfos from "./product";
 import { getAdditionals } from "../../../services/get-additionals";
 import MiniCheckOut from "./mini-checkout";
+import { FaXmark } from "react-icons/fa6";
+
 
 
 
@@ -44,8 +46,12 @@ export default function ConfirmItem(props) {
 
   return (
     <Page >
+      
       <Mask onClick={() => { props.setShowConfirm(false) }} />
       <Card>
+      <Close onClick={() => { props.setShowConfirm(false) }}>
+        <FaXmark />
+      </Close>
         <h1>Revise seu pedido!</h1>
 
         <ProductInfos
@@ -100,6 +106,7 @@ const Mask = styled.div`
 `
 
 const Card = styled.div`
+  position: relative;
   z-index: 2000;
   font-family: 'Montserrat', sans-serif;
   margin-top: 5vh;
@@ -129,6 +136,10 @@ const Card = styled.div`
   &::-webkit-scrollbar-thumb {
     background-color: darkgreen; 
     border-radius: 6px;
+  }
+  @media (max-width: 700px) {
+        width: 100%;
+        
   }
 `;
 
@@ -165,6 +176,10 @@ const Finish = styled.button`
   &:hover{
     background-color: darkgreen;
   }
+  @media (max-width: 700px) {
+        width: 40%;
+        padding: 10px;
+  }
 `;
 
 const Continue = styled.button`
@@ -180,5 +195,29 @@ const Continue = styled.button`
   &:hover{
     background-color: gray;
     color: white;
+  }
+  @media (max-width: 700px) {
+        width: 45%;
+        padding: 10px;
+  }
+`
+
+const Close = styled.button`
+  display: none;
+  @media (max-width: 700px) {
+        display: flex;
+        position: fixed;
+        top: 60px;
+        right: 10px;
+        border-radius: 1000px;
+        height: 40px;
+        width: 40px;
+        z-index: 10000;
+        justify-content: center;
+        align-items: center;
+        background-color: darkgreen;
+        border: 1px solid rgba(0,0,0,0.25);
+        box-shadow: 2px 2px 6px 3px #1b8a1b34;
+        color: white;
   }
 `

@@ -141,6 +141,9 @@ const SearchGroup = styled.div`
     height: 100%;
     padding: 13px;
   };
+  @media (max-width: 700px) {
+        width: 95%;
+  }
 `
 
 const SearchButton = styled.button`
@@ -166,6 +169,10 @@ const Finish = styled.button`
   color: white;
   border-radius: 12px;
   cursor: pointer;
+  @media (max-width: 700px) {
+        width: 40%;
+        padding: 5px;
+  }
 `;
 
 const Cancel = styled.button`
@@ -175,5 +182,9 @@ const Cancel = styled.button`
   color: gray;
   border-radius: 12px;
   cursor: pointer;
+  @media (max-width: 700px) {
+        width: 40%;
+        padding: 5px;
+  }
 `
 

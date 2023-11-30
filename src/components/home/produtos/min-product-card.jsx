@@ -28,6 +28,7 @@ const Card = styled.div`
   overflow: clip;
   border: 1px solid darkgreen;
   box-shadow: 2px 2px 6px 2px #1b8a1b34;
+
 `;
 
 
