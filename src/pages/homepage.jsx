@@ -36,12 +36,18 @@ export default function HomePage(props) {
     }
   }, [filterCat])
 
-  function handleSearch() {
-    const searchText = search.toLowerCase();
-    const filteredProducts = products.filter((product) =>
-      product.name.toLowerCase().includes(searchText)
-    );
-    setFiltered(filteredProducts);
+  function handleSearch(e) {
+    console.log(e)
+    const searchText = e.toLowerCase();
+
+    if (products) {
+      const filteredProducts = products.filter((product) =>
+        product.id === parseFloat(searchText) ||
+        product.name.toLowerCase().includes(searchText)
+      );
+
+      setFiltered(filteredProducts);
+    }
   }
 
   return (
@@ -53,7 +59,7 @@ export default function HomePage(props) {
         <SearchGroup>
           <input type="text" placeholder="O que você procura?"
             value={search}
-            onChange={e => { setSearch(e.target.value); handleSearch() }}
+            onChange={e => { setSearch(e.target.value); handleSearch(e.target.value) }}
           />
 
           <SearchButton onClick={() => { handleSearch() }}>
