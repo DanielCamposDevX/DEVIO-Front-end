@@ -39,7 +39,7 @@ export default function PaymentPage(props) {
                     <InputContainer>
                         <div>
                             <label><h2>Nome do Cliente</h2></label>
-                            <NameInput type="text" value={name} onChange={e => setName(e.target.value)} />
+                            <NameInput type="text" value={name} onChange={e => setName(e.target.value)} required />
                         </div>
                         <div>
                             <label><h2>Código</h2></label>
