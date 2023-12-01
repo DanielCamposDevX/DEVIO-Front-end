@@ -3,6 +3,7 @@ import Header from "../components/page-header"
 import { Order } from "../components/kitchen/order";
 import { useEffect, useState } from "react";
 import { getOrders } from "../services/get-orders";
+import Loading from "../components/home/loading";
 
 export default function KitchenPage() {
 
@@ -18,27 +19,29 @@ export default function KitchenPage() {
       <Main>
         <Doing>
           <h1>Preparando:</h1>
-          {orders.length > 0 &&
+          {orders.length > 0 ?
             orders.map((order) => {
               if (order.status === "PAYED") {
                 return <Order key={order.id} order={order} />;
               } else {
                 return null;
               }
-            })
+            }):
+            (<Loading />)
           }
 
         </Doing>
         <Done>
           <h1>Pronto:</h1>
-          {orders.length > 0 &&
+          {orders.length > 0 ?
             orders.map((order) => {
               if (order.status === "READY") {
                 return <Order key={order.id} order={order} />;
               } else {
                 return null;
               }
-            })
+            }):
+            (<Loading />)
           }
         </Done>
       </Main>

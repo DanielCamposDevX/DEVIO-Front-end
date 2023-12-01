@@ -3,6 +3,7 @@ import CategoryCard from "./category-card"
 import { useEffect, useState } from "react";
 import { getCategories } from "../../../services/get-categories";
 import { FaXmark } from "react-icons/fa6";
+import Loading from "../loading";
 
 
 
@@ -30,7 +31,7 @@ export default function Categories(props) {
             </h2>
             <h3>Navegue por categoria</h3>
             <CategoryHolder>
-                {categories && categories.map((category) => (
+                {categories ? (categories.map((category) => (
                     <CategoryCard
                         key={category.id}
                         handleFilter={handleFilter}
@@ -38,7 +39,9 @@ export default function Categories(props) {
                         image={category.image}
                         name={category.name}
                     />
-                ))}
+                ))):
+                (<Loading />)
+                }
 
             </CategoryHolder>
 

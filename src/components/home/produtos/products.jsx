@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import ProductCard from "./product-card";
-
+import Loading from "../loading";
 
 
 export default function Products(props) {
@@ -11,10 +11,11 @@ export default function Products(props) {
             <h2>Produtos</h2>
             <h3>Selecione um produto para adicionar ao seu pedido</h3>
             <ProductHolder>
-                { props.products &&
+                { props.products ?
                    props.products.map((food) => (
                         <ProductCard key={food.id} setShowConfirm={props.setShowConfirm} product={food} setSelected={props.setSelected} cart={props.cart} />
-                    ))
+                    )):
+                    (<Loading />)
                 }
 
             </ProductHolder>

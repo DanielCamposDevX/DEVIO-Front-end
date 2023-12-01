@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getOrders } from "../services/get-orders";
 import styled from "styled-components";
 import Header from "../components/page-header";
+import Loading from "../components/home/loading";
 
 export default function WithdrawPage() {
 
@@ -21,26 +22,28 @@ export default function WithdrawPage() {
             <Main>
                 <Doing>
                     <h1>Preparando:</h1>
-                    {orders.length > 0 &&
+                    {orders.length > 0 ?
                         orders.map((order) => {
                             if (order.status === "PAYED") {
                                 return <h2>{order.name}</h2>;
                             } else {
                                 return null;
                             }
-                        })
+                        }):
+                        (<Loading />)
                     }
                 </Doing>
                 <Done>
                     <h1>Pronto:</h1>
-                    {orders.length > 0 &&
+                    {orders.length > 0 ?
                         orders.map((order) => {
                             if (order.status === "READY") {
                                 return <h2>{order.name}</h2>;
                             } else {
                                 return null;
                             }
-                        })
+                        }):
+                        (<Loading />)
                     }
                 </Done>
             </Main>
