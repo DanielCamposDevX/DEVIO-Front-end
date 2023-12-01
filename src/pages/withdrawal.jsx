@@ -33,6 +33,7 @@ export default function WithdrawPage() {
                         (<Loading />)
                     }
                 </Doing>
+
                 <Done>
                     <h1>Pronto:</h1>
                     {orders.length > 0 ?
@@ -99,11 +100,11 @@ const Doing = styled.div`
 
 const Done = styled.div`
   width: 50%;
-  height:100%;  
+  height:100%;
   padding-left: 50px;
   display: flex;
   flex-direction: column;
-  
+
   h2 {
     color: #06f106;
   }
